@@ -36,7 +36,7 @@ class ChatItemWidget extends StatelessWidget {
                 Container(
                   child: Text(
                     f.format(
-                        DateTime.fromMillisecondsSinceEpoch(1645118474555)),
+                        DateTime.fromMillisecondsSinceEpoch(1645118473555)),
                     style: const TextStyle(
                         color: Colors.blueGrey,
                         fontSize: 12.0,
