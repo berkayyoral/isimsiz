@@ -18,7 +18,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
         child: Container(
-          color: Colors.red,
+          color: Colors.grey,
           child: Row(
             children: <Widget>[
               Expanded(
@@ -37,7 +37,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                               child: Center(
                                 child: Icon(
                                   Icons.person_rounded,
-                                  color: Colors.purple,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -56,10 +56,16 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
-                                    Text('@VedatCan',style: TextStyle(
-                                      color: Colors.white70,
-                                      fontWeight: FontWeight.bold,),),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      '@VedatCan',
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

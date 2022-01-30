@@ -19,10 +19,13 @@ class _MainPageState extends State<MainPage> {
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            title: const Text("Anasayfa"),
+            title: const Text("SocialChat"),
+            centerTitle: true,
             actions: [
               IconButton(
-                onPressed: () {Navigator.pushNamed(context, 'Chat');},
+                onPressed: () {
+                  Navigator.pushNamed(context, 'Chat');
+                },
                 icon: const Icon(
                   Icons.message,
                   color: Colors.white,
