@@ -18,10 +18,10 @@ class LoginScreen extends StatelessWidget {
               const Flexible(
                 child: Center(
                   child: Text(
-                    'İsimBulun',
+                    'SOCIALCHAT',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 60,
+                      fontSize: 45,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -17,12 +17,12 @@ class ChatItemWidget extends StatelessWidget {
                 Container(
                   child: const Text(
                     'This is a sent message',
-                    style: TextStyle(color: Colors.green),
+                    style: TextStyle(color: Colors.black),
                   ),
                   padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
                   width: 200.0,
                   decoration: BoxDecoration(
-                    color: Colors.yellow,
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   margin: EdgeInsets.only(right: 10.0),
@@ -36,13 +36,13 @@ class ChatItemWidget extends StatelessWidget {
                 Container(
                   child: Text(
                     f.format(
-                        DateTime.fromMillisecondsSinceEpoch(1565888474278)),
+                        DateTime.fromMillisecondsSinceEpoch(1645118474555)),
                     style: const TextStyle(
                         color: Colors.blueGrey,
                         fontSize: 12.0,
                         fontStyle: FontStyle.normal),
                   ),
-                  margin: EdgeInsets.only(left: 5.0,top: 5.0,bottom: 5.0),
+                  margin: EdgeInsets.only(left: 5.0, top: 5.0, bottom: 5.0),
                 ),
               ],
             ),

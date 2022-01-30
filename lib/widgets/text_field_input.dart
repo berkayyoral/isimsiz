@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../renkler.dart';
 
-
-
 class TextInputField extends StatelessWidget {
   const TextInputField({
     Key? key,
@@ -18,7 +16,6 @@ class TextInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -31,9 +28,6 @@ class TextInputField extends StatelessWidget {
         ),
         child: Center(
           child: TextField(
-
-
-
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -47,9 +41,7 @@ class TextInputField extends StatelessWidget {
               hintText: hint,
               hintStyle: kBodyText,
             ),
-            onChanged: (value){
-
-            },
+            onChanged: (value) {},
             style: kBodyText,
             keyboardType: inputType,
             textInputAction: inputAction,
