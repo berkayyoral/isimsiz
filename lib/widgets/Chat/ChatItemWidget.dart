@@ -51,7 +51,9 @@ class ChatItemWidget extends StatelessWidget {
       );
     } else {
       return Container(
-        child: Column(),
+        child: Column(
+          children: [Text('Deneme')],
+        ),
       );
     }
   }
