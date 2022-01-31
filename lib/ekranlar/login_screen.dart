@@ -1,9 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kitaplik1/classes/authentication.dart';
+import 'package:kitaplik1/ekranlar/screens.dart';
 import 'package:kitaplik1/renkler.dart';
 import 'package:kitaplik1/widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
+  TextEditingController kEmail = TextEditingController();
+  TextEditingController kPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -30,31 +36,46 @@ class LoginScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const TextInputField(
-                    icon: FontAwesomeIcons.envelope,
-                    hint: 'Email',
-                    inputType: TextInputType.emailAddress,
-                    inputAction: TextInputAction.next,
-                  ),
-                  const PasswordInput(
-                    icon: FontAwesomeIcons.lock,
-                    hint: 'Password',
-                    inputAction: TextInputAction.done,
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, 'ForgotPassword'),
-                    child: const Text(
-                      'Forgot Password',
-                      style: kBodyText,
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: "Email",
                     ),
+                    controller: kEmail,
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: "Password",
+                    ),
+                    controller: kPassword,
                   ),
                   const SizedBox(
                     height: 25,
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pushNamed(context, 'MainPage'),
-                    child: const RoundedButton(
-                      buttonName: 'Login',
+                    child: FlatButton(
+                      textColor: Colors.red, // foreground
+                      onPressed: () {
+                        AuthenticationHelper()
+                            .signIn(
+                                email: kEmail.text, password: kPassword.text)
+                            .then((result) {
+                          if (result == null) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainPage()));
+                          } else {
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                                result,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ));
+                          }
+                        });
+                      },
+                      child: Text('Login'),
                     ),
                   ),
                   const SizedBox(
@@ -65,9 +86,15 @@ class LoginScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, 'CreateNewAccount'),
                 child: Container(
-                  child: const Text(
-                    'Create New Account',
-                    style: kBodyText,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.blue,
+                    ),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateNewAccount())),
+                    child: Text('Create New Account'),
                   ),
                   decoration: const BoxDecoration(
                     border: Border(
@@ -77,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 200,
               )
             ],
           ),

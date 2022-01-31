@@ -34,8 +34,10 @@ class ForgotPassword extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    SizedBox(height: size.height * 0.1,),
-                     SizedBox(
+                    SizedBox(
+                      height: size.height * 0.1,
+                    ),
+                    SizedBox(
                       width: size.width * 0.8,
                       child: const Text(
                         'Enter your email we will send instruction to reset your password',
@@ -54,7 +56,13 @@ class ForgotPassword extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const RoundedButton(buttonName: 'Send'),
+                    FlatButton(
+                      textColor: Colors.red, // foreground
+                      onPressed: () {},
+                      child:
+                          Text('FlatButton with custom foreground/background'),
+                    )
+                    //const RoundedButton(buttonName: 'Send'),
                   ],
                 ),
               )

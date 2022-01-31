@@ -155,8 +155,10 @@ class _ProfileState extends State<Profile> {
               ),
               GestureDetector(
                 onTap: () {},
-                child: const RoundedButton(
-                  buttonName: 'Arkadaş Ekle',
+                child: FlatButton(
+                  textColor: Colors.red, // foreground
+                  onPressed: () { },
+                  child: Text('FlatButton with custom foreground/background'),
                 ),
               ),
               const SizedBox(
