@@ -1,37 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kitaplik1/users.dart';
+import 'classes/firebase_api.dart';
 import 'ekranlar/screens.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await FirebaseApi.addRandomUsers(Users.initUsers);
 
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  static final String title = 'Firebase Chat';
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'İsimBulun',
-        theme: ThemeData(
-          textTheme:
-              GoogleFonts.josefinSansTextTheme(Theme.of(context).textTheme),
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: FutureBuilder(
-            future: _initialization,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(child: Text('Beklenilmeyen bir hata oluştu'));
-              } else if (snapshot.hasData) {
-                return LoginScreen();
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            }));
-  }
+        title: title,
+        theme: ThemeData(primarySwatch: Colors.deepOrange),
+        home: LoginScreen(),
+      );
 }

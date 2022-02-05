@@ -1,12 +1,20 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kitaplik1/classes/authentication.dart';
+import 'package:kitaplik1/classes/firebase_api.dart';
+import 'package:kitaplik1/classes/firebase_api.dart';
+import 'package:kitaplik1/classes/firebase_api.dart';
 import 'package:kitaplik1/widgets/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:path/path.dart';
+import 'dart:io';
+import 'dart:io' as io;
 
 import '../renkler.dart';
 import 'main_page.dart';
@@ -17,6 +25,8 @@ class CreateNewAccount extends StatefulWidget {
 }
 
 class _CreateNewAccountState extends State<CreateNewAccount> {
+  FirebaseApi firebaseApi = new FirebaseApi();
+
   File? image;
   TextEditingController kEmail = TextEditingController();
   TextEditingController kPassword = TextEditingController();
@@ -98,10 +108,22 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                   FlatButton(
                     textColor: Colors.red, // foreground
                     onPressed: () {
-                      AuthenticationHelper()
+                      uploadImageToFirebase(context);
+                      /* AuthenticationHelper()
                           .signUp(email: kEmail.text, password: kPassword.text)
                           .then((result) {
                         if (result == null) {
+                          Map<String, dynamic> userInfoMap = {
+                            "name": kNameSur.text,
+                             "url": dowurl,
+                            /*"urlAvatar": image != null
+                                ? Image.file(image!)
+                                : 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Andrea_Appiani_Napoleon_K%C3%B6nig_von_Rom.jpg',*/
+                            //lastMessageTime: DateTime.now(),
+                          };
+
+                          FirebaseApi.uploadUserInfo(userInfoMap);
+
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -114,7 +136,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                             ),
                           ));
                         }
-                      });
+                      });*/
                     },
                     child: Text('Register'),
                   )
@@ -161,5 +183,53 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
+  }
+
+  Future uploadImageToFirebase(BuildContext context) async {
+    String fileName = basename(image!.path);
+    Reference ref =
+        FirebaseStorage.instance.ref().child('uploads').child('/$fileName');
+
+    final metadata = SettableMetadata(
+        contentType: 'image/jpeg',
+        customMetadata: {'picked-file-path': fileName});
+    UploadTask uploadTask;
+    //late StorageUploadTask uploadTask = firebaseStorageRef.putFile(_imageFile);
+    uploadTask = ref.putFile(File(image!.path));
+
+    UploadTask task = await Future.value(uploadTask);
+    Future.value(uploadTask)
+        .then((value) => {print("Upload file path ${value.ref.fullPath}")})
+        .onError((error, stackTrace) =>
+            {print("Upload file path error ${error.toString()} ")});
+
+    var dowurl = (await ref.getDownloadURL()).toString();
+
+    //return dowurl;
+
+    AuthenticationHelper()
+        .signUp(email: kEmail.text, password: kPassword.text)
+        .then((result) {
+      if (result == null) {
+        Map<String, dynamic> userInfoMap = {
+          "name": kNameSur.text,
+          "url": dowurl,
+          //lastMessageTime: DateTime.now(),
+        };
+
+        FirebaseApi.uploadUserInfo(userInfoMap);
+
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => MainPage()));
+      } else {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(
+            result,
+            style: TextStyle(fontSize: 16),
+          ),
+        ));
+      }
+    });
+    //await FirebaseFirestore.instance.collection("users").add({"url": dowurl});
   }
 }

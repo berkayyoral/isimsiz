@@ -3,6 +3,9 @@ import 'package:kitaplik1/widgets/BottomBar/BottomBarHome.dart';
 import 'package:kitaplik1/widgets/BottomBar/BottomBarProfile.dart';
 import 'package:kitaplik1/widgets/background_image.dart';
 
+import 'chat_page.dart';
+import 'chats_page.dart';
+
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
@@ -22,7 +25,8 @@ class _MainPageState extends State<MainPage> {
             actions: [
               IconButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'Chat');
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ChatsPage()));
                 },
                 icon: const Icon(
                   Icons.message,

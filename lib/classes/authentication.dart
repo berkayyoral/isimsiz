@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kitaplik1/classes/firebase_api.dart';
 
 class AuthenticationHelper {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -11,6 +12,7 @@ class AuthenticationHelper {
         email: email,
         password: password,
       );
+
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
