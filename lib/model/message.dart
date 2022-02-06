@@ -7,7 +7,7 @@ class MessageField {
 }
 
 class Message {
-  final String idUser;
+  final String idUser; //uid
   final String urlAvatar;
   final String username;
   final String message;

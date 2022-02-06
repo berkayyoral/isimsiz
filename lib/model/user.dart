@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import '../utils.dart';
 
 class UserField {
@@ -7,15 +5,15 @@ class UserField {
 }
 
 class User {
-  final String? idUser;
+  final String? uid;
   final String name;
-  final String urlAvatar;
+  final String url;
   final DateTime lastMessageTime;
 
   const User({
-    this.idUser,
+    this.uid,
     required this.name,
-    required this.urlAvatar,
+    required this.url,
     required this.lastMessageTime,
   });
 
@@ -26,23 +24,23 @@ class User {
     String? lastMessageTime,
   }) =>
       User(
-        idUser: idUser ?? this.idUser,
+        uid: uid ?? this.uid,
         name: name ?? this.name,
-        urlAvatar: urlAvatar ?? this.urlAvatar,
+        url: url ?? this.url,
         lastMessageTime: this.lastMessageTime,
       );
 
   static User fromJson(Map<String, dynamic> json) => User(
-        idUser: json['idUser'],
+        uid: json['uid'],
         name: json['name'],
-        urlAvatar: json['urlAvatar'],
-        lastMessageTime: DateTime(json['lastMessageTime']),
+        url: json['url'],
+        lastMessageTime: Utils.toDateTime(json['lastMessageTime']),
       );
 
   Map<String, dynamic> toJson() => {
-        'idUser': idUser,
+        'uid': uid,
         'name': name,
-        'urlAvatar': urlAvatar,
+        'url': url,
         'lastMessageTime': Utils.fromDateTimeToJson(lastMessageTime),
       };
 }

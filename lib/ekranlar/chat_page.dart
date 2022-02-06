@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kitaplik1/model/user.dart';
 import 'package:kitaplik1/widgets/chats/messages_widget.dart';
 import 'package:kitaplik1/widgets/chats/new_message_widget.dart';
@@ -5,7 +6,7 @@ import 'package:kitaplik1/widgets/chats/profile_header_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
-  final User user;
+  final DocumentSnapshot<Object?> user;
 
   const ChatPage({
     required this.user,
@@ -24,7 +25,7 @@ class _ChatPageState extends State<ChatPage> {
         body: SafeArea(
           child: Column(
             children: [
-              ProfileHeaderWidget(name: widget.user.name),
+              ProfileHeaderWidget(name: widget.user['name']),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.all(10),
@@ -35,10 +36,10 @@ class _ChatPageState extends State<ChatPage> {
                       topRight: Radius.circular(25),
                     ),
                   ),
-                  child: MessagesWidget(idUser: widget.user.idUser!),
+                  child: MessagesWidget(idUser: widget.user['uid']),
                 ),
               ),
-              NewMessageWidget(idUser: widget.user.idUser!)
+              NewMessageWidget(idUser: widget.user['uid'])
             ],
           ),
         ),

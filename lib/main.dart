@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:kitaplik1/users.dart';
-import 'classes/firebase_api.dart';
-import 'ekranlar/screens.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'ekranlar/screens.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseApi.addRandomUsers(Users.initUsers);
+  //await FirebaseApi.addRandomUsers(Users.initUsers);
 
   runApp(MyApp());
 }

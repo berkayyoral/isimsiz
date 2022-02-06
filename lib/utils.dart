@@ -16,7 +16,8 @@ class Utils {
             },
           );
 
-  static DateTime? toDateTime(Timestamp value) {
+  static dynamic toDateTime(Timestamp value) {
+    //dynamic değil DateTime dı.
     // ignore: unnecessary_null_comparison
     if (value == null) return null;
 

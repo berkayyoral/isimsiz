@@ -15,6 +15,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'dart:io' as io;
+import 'package:uuid/uuid.dart';
 
 import '../renkler.dart';
 import 'main_page.dart';
@@ -204,6 +205,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
             {print("Upload file path error ${error.toString()} ")});
 
     var dowurl = (await ref.getDownloadURL()).toString();
+    var uuid = Uuid();
 
     //return dowurl;
 
@@ -214,7 +216,8 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
         Map<String, dynamic> userInfoMap = {
           "name": kNameSur.text,
           "url": dowurl,
-          //lastMessageTime: DateTime.now(),
+          "uid": uuid.v1(),
+          "lastMessageTime": DateTime.now(),
         };
 
         FirebaseApi.uploadUserInfo(userInfoMap);

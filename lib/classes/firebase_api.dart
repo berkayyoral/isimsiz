@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' hide User;
-import 'package:flutter/cupertino.dart';
 import 'package:kitaplik1/data.dart';
 import 'package:kitaplik1/model/message.dart';
 import 'package:kitaplik1/model/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 import '../utils.dart';
 
@@ -42,7 +38,7 @@ class FirebaseApi {
           .snapshots()
           .transform(Utils.transformer(Message.fromJson));
 
-  static Future addRandomUsers(List<User> users) async {
+  /*static Future addRandomUsers(List<User> users) async {
     final refUsers = FirebaseFirestore.instance.collection('users');
 
     final allUsers = await refUsers.get();
@@ -56,7 +52,7 @@ class FirebaseApi {
         await userDoc.set(newUser.toJson());
       }
     }
-  }
+  }*/
 
   static uploadUserInfo(userMap) {
     FirebaseFirestore.instance.collection("users").add(userMap);
