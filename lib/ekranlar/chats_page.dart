@@ -26,6 +26,20 @@ class ChatsPage extends StatelessWidget {
         FirebaseFirestore.instance.collection('users');
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text("Mesajlarım"),
+        centerTitle: true,
+        actions: [
+          /*IconButton(
+            onPressed: (),
+            icon: const Icon(
+              Icons.message,
+              color: Colors.white,
+            ),
+          ),*/
+        ],
+      ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
             stream: usersRef.snapshots(),

@@ -38,14 +38,15 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: "Email",
+                      labelText: "E-posta",
                     ),
                     controller: kEmail,
                   ),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: "Password",
+                      labelText: "Şifre",
                     ),
+                    obscureText: true,
                     controller: kPassword,
                   ),
                   const SizedBox(
@@ -75,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                           }
                         });
                       },
-                      child: Text('Login'),
+                      child: Text('Giriş Yap'),
                     ),
                   ),
                   const SizedBox(
@@ -94,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => CreateNewAccount())),
-                    child: Text('Create New Account'),
+                    child: Text('Yeni Hesap Oluştur'),
                   ),
                   decoration: const BoxDecoration(
                     border: Border(

@@ -87,20 +87,21 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: "Name",
+                      labelText: "İsim",
                     ),
                     controller: kNameSur,
                   ),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: "Email",
+                      labelText: "E-posta",
                     ),
                     controller: kEmail,
                   ),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: "Password",
+                      labelText: "Şifre",
                     ),
+                    obscureText: true,
                     controller: kPassword,
                   ),
                   SizedBox(
@@ -139,7 +140,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         }
                       });*/
                     },
-                    child: Text('Register'),
+                    child: Text('Kayıt Ol'),
                   )
                 ],
               ),
@@ -150,7 +151,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Already have an account?',
+                    'Hesabınız var mı?',
                     style: kBodyText,
                   ),
                   GestureDetector(
@@ -158,7 +159,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                       Navigator.pushNamed(context, '/');
                     },
                     child: Text(
-                      'Login',
+                      'Giriş Yap',
                       style: kBodyText.copyWith(
                           color: kWhite, fontWeight: FontWeight.bold),
                     ),
