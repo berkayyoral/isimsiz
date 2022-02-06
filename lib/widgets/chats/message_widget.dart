@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kitaplik1/model/message.dart';
 import 'package:flutter/material.dart';
 
 class MessageWidget extends StatelessWidget {
-  final Message message;
+  final DocumentSnapshot<Object?> message;
   final bool isMe;
 
   const MessageWidget({
@@ -20,7 +21,7 @@ class MessageWidget extends StatelessWidget {
       children: <Widget>[
         if (!isMe)
           CircleAvatar(
-              radius: 16, backgroundImage: NetworkImage(message.urlAvatar)),
+              radius: 16, backgroundImage: NetworkImage(message['url'])),
         Container(
           padding: EdgeInsets.all(16),
           margin: EdgeInsets.all(16),
@@ -38,14 +39,14 @@ class MessageWidget extends StatelessWidget {
   }
 
   Widget buildMessage() => Column(
-    crossAxisAlignment:
-    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        message.message,
-        style: TextStyle(color: isMe ? Colors.black : Colors.white),
-        textAlign: isMe ? TextAlign.end : TextAlign.start,
-      ),
-    ],
-  );
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            message['message'],
+            style: TextStyle(color: isMe ? Colors.black : Colors.white),
+            textAlign: isMe ? TextAlign.end : TextAlign.start,
+          ),
+        ],
+      );
 }

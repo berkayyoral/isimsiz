@@ -7,31 +7,31 @@ class MessageField {
 }
 
 class Message {
-  final String idUser; //uid
-  final String urlAvatar;
+  final String uid; //uid
+  final String url;
   final String username;
   final String message;
   final DateTime createdAt;
 
   const Message({
-    required this.idUser,
-    required this.urlAvatar,
+    required this.uid,
+    required this.url,
     required this.username,
     required this.message,
     required this.createdAt,
   });
 
   static Message fromJson(Map<String, dynamic> json) => Message(
-        idUser: json['idUser'],
-        urlAvatar: json['urlAvatar'],
+        uid: json['uid'],
+        url: json['url'],
         username: json['username'],
         message: json['message'],
         createdAt: DateTime.parse(json['sendDate']),
       );
 
   Map<String, dynamic> toJson() => {
-        'idUser': idUser,
-        'urlAvatar': urlAvatar,
+        'uid': uid,
+        'url': url,
         'username': username,
         'message': message,
         'createdAt': Utils.fromDateTimeToJson(createdAt),
